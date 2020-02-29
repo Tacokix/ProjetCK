@@ -62,8 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Project\Scripts\BuffHandler.cs" />
     <Compile Include="Assets\Project\Scripts\Char.cs" />
     <Compile Include="Assets\Project\Scripts\DebuffHandler.cs" />
+    <Compile Include="Assets\Project\Scripts\InputManager.cs" />
     <Compile Include="Assets\Project\Scripts\Player.cs" />
     <Compile Include="Assets\Project\Scripts\Spell.cs" />
     <Compile Include="Assets\UniversalRP\Scripts\SimpleCameraController.cs" />

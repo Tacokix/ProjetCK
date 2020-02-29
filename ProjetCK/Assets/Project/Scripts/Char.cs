@@ -28,7 +28,6 @@ public abstract class Char : MonoBehaviour
 
     #endregion
 
-
     #region Fields
     /// <summary>
     /// The current amount of life.
@@ -47,20 +46,25 @@ public abstract class Char : MonoBehaviour
     [HideInInspector] public float maxEnergy;
 
     /// <summary>
-    /// The current target of the char;
+    /// The current target of the char.
     /// </summary>
     [HideInInspector] public Char target;
 
     /// <summary>
-    /// The debuff state of the char;
+    /// The debuff handler of the char.
     /// </summary>
-    [HideInInspector] public DebuffState debuffState;
+    [HideInInspector] public DebuffHandler debuffHandler;
+
+    /// <summary>
+    /// The buff handler of the char.
+    /// </summary>
+    [HideInInspector] public BuffHandler buffHandler;
 
     #endregion
 
     #region Methods
     /// <summary>
-    /// Use a spell.
+    /// Cast a spell or an attack.
     /// </summary>
     /// <param name="spellID">The ID of the spell.</param>
     public abstract void UseSpell(int spellID);
