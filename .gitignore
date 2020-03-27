@@ -2,5 +2,8 @@
 ProjetCK/Library/
 
 ProjetCK/Temp/
+ProjetCK/obj/
 
 ProjetCK/.vs/
+/ProjetCK/Assembly-CSharp-Editor.csproj
+/ProjetCK/Assembly-CSharp.csproj

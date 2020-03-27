@@ -122,6 +122,6 @@ public abstract class Char : MonoBehaviour
 
 public enum EnergyType
 {
-    Rage,
-    Mana
+    Mana,
+    Rage
 }

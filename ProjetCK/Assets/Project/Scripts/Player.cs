@@ -20,6 +20,7 @@ public class Player : Char
         // create a DebuffResistance class, and a field in the Char class, that gathers all informations about debuff resistance of the char.
 
     }
+
     #region Implementation
     public override void UseSpell(int spellID)
     {
