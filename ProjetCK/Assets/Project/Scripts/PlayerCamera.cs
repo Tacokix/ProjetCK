@@ -4,28 +4,55 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
+    #region Inspector
+
+    [Tooltip("The offset from the player's position.")]
+    [SerializeField] private Vector3 _offset;
+    #endregion
+
     #region Fields
     /// <summary>
     /// The player to track.
     /// </summary>
-    [SerializeField] private Player _player;
-
-    /// <summary>
-    /// The offset from the player's position.
-    /// </summary>
-    private Vector3 _offset;
+    private Player _player;
 
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
+    #region MonoBehaviour
+    void OnEnable()
     {
-        _offset = transform.position - _player.transform.position; 
+        _player = Player.localInstance;
+
+        if (_player == null)
+        {
+            Player.OnLocalPlayerInstantiated += InitializeCamera;
+        }
     }
 
-    // Update is called once per frame
+    void OnDisable()
+    {
+        Player.OnLocalPlayerInstantiated -= InitializeCamera;
+    }
+
     void Update()
     {
-        transform.position = _player.transform.position + _offset;
+        if(_player = null)
+        {
+            transform.position = _player.transform.position + _offset;
+        }
     }
+
+    #endregion
+
+    #region Methods
+    /// <summary>
+    /// Indicates the player to track.
+    /// </summary>
+    /// <param name="player">The player to track.</param>
+    public void InitializeCamera(Player player)
+    {
+        _player = player;
+    }
+
+    #endregion
 }

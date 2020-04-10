@@ -59,6 +59,26 @@ public abstract class Char : MonoBehaviour
     /// The buff handler of the char.
     /// </summary>
     [HideInInspector] public BuffHandler buffHandler;
+    
+    #endregion
+
+    #region MonoBehaviour
+    private void OnMouseDown()
+    {
+        Highlight(transform, true);
+    }
+
+    //private void OnMouseEnter()
+    //{
+    //    Debug.Log("OnMouseEnter");
+    //    Highlight(transform, true);   
+    //}
+
+    //private void OnMouseExit()
+    //{
+    //    Debug.Log("OnMouseExit");
+    //    Highlight(transform, false);
+    //}
 
     #endregion
 
@@ -115,6 +135,20 @@ public abstract class Char : MonoBehaviour
         }
 
         return netDamage;
+    }
+
+    /// <summary>
+    /// Highligths the char by changing its layer.
+    /// </summary>
+    /// <param name="active">If true, activate the highlight.</param>
+    public void Highlight(Transform transf, bool active)
+    {
+        foreach(Transform t in transf)
+        {
+            Highlight(t, active);
+        }
+
+        transf.gameObject.layer = LayerMask.NameToLayer(active ? "Outline" : "Default");
     }
 
     #endregion
