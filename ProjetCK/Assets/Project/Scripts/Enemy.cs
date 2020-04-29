@@ -6,22 +6,22 @@ public abstract class Enemy : Char
 {
     public override void Die()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void TryApplyDebuff(int debuffID, Char target)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void TryReceiveDebuff(int debuffID)
     {
-        throw new System.NotImplementedException();
+
     }
 
-    public override void UseSpell(int spellID)
+    public override void TryUseSpell(int spellID)
     {
-        throw new System.NotImplementedException();
+
     }
 
 }

@@ -6,7 +6,6 @@ using Photon.Pun;
 
 public class SettingsManager : MonoBehaviour
 {
-
     #region Inspector
     [Header("Settings")]
 
@@ -72,6 +71,20 @@ public class SettingsManager : MonoBehaviour
     public static string AppSceneName
     {
         get { return Instance._appSceneName; }
+    }
+
+    [Tooltip("The path to the spell resources.")]
+    [SerializeField] private string _spellResourcesPath;
+
+    /// <summary>
+    /// The path to the spell resources.
+    /// </summary>
+    public static string SpellResourcesPath
+    {
+        get
+        {
+            return Instance._spellResourcesPath;
+        }
     }
     #endregion
 

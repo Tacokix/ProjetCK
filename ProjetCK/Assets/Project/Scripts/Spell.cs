@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell : MonoBehaviour
+public abstract class Spell : ScriptableObject
 {
+    #region Fields
+    public int spellID;
 
-}
+    public string spellName;
 
-public static class SpellNames
-{
-    // The list of spells
-    public const int Spell1 = 1;
-    public const int Spell2 = 2;
-    public const int Spell3 = 3;
-    public const int Spell4 = 4;
-    public const int Spell5 = 5;
-    public const int Spell6 = 6;
-    public const int Spell7 = 7;
-    public const int Spell8 = 8;
+    public TargetingType targetingType;
 
+    public float resourceCost;
+
+    #endregion
+
+    #region Methods
+    public abstract void UseSpell(Char sourceChar, Char target);
+
+    public abstract void UseSpell(Char sourceChar, Vector3 position);
+
+    #endregion
 }

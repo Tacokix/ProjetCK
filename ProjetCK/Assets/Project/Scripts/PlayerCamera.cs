@@ -36,7 +36,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if(_player = null)
+        if(_player != null)
         {
             transform.position = _player.transform.position + _offset;
         }

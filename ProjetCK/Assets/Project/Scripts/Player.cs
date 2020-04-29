@@ -10,12 +10,15 @@ public class Player : Char
     #region Fields
     public static Player localInstance { get; private set; }
 
+    // Event called when the local photon player has been created.
     public static Action<Player> OnLocalPlayerInstantiated;
+
+    private Spell currentSpellUsed;
 
     #endregion
 
     #region MonoBehaviour
-    private void Awake()
+    protected override void Awake()
     {
         if(!GetComponent<PhotonView>().IsMine)
         {
@@ -24,9 +27,12 @@ public class Player : Char
         }
         else
         {
+            localInstance = this;
             OnLocalPlayerInstantiated(this);
             OnLocalPlayerInstantiated = null;
         }
+
+        base.Awake();
     }
 
     #endregion
@@ -52,9 +58,41 @@ public class Player : Char
     #endregion
 
     #region Implementation
-    public override void UseSpell(int spellID)
+    public override void TryUseSpell(int spellID)
     {
+        if(!spellCooldowns.ContainsKey(spellID))
+        {
+            Debug.Log("Spell not learned");
+            return;
+        }
 
+        if(spellCooldowns[spellID] > 0)
+        {
+            // Show 'spell on cooldown' feedback
+            Debug.Log("Spell on cooldown.");
+            return;
+        }
+
+        currentSpellUsed = SpellHandler.GetSpell(spellID);
+
+        if(energy < currentSpellUsed.resourceCost)
+        {
+            // Show 'not enough resources' feedback
+            Debug.Log("Not enough resources.");
+            return;
+        }
+
+        // try use spell
+        if(currentSpellUsed.targetingType == TargetingType.Target)
+        {
+            // TO DO : Some pathfinding and range check 
+            SpellHandler.TryUseSpell(currentSpellUsed, this, currentTarget);
+        }
+        else if(currentSpellUsed.targetingType == TargetingType.Skillshot)
+        {
+            // TO DO : Some pathfinding and range check (depending on ground layer)
+            SpellHandler.TryUseSpell(currentSpellUsed, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
     }
 
     #endregion

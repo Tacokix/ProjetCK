@@ -23,6 +23,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     #region Monobehaviour
     private void Awake()
     {
+        _mainCanvas.SetActive(false);
         Connect();
     }
 
